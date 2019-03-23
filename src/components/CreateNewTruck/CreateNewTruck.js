@@ -102,7 +102,19 @@ class CreateNewTruck extends React.Component {
   }
 
   handleSubmit() {
-    if (!this.checkValidate()) return;
+    // if (!this.checkValidate()) return;
+    this.props.callBack({
+      truck_plate: "30A-50491234",
+      cargo_type: "Computer, Electronic",
+      driver: "Nguyen Van A",
+      truck_type: "5 ton",
+      price: "1000000000",
+      dimenson: "10-2-1.5",
+      parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
+      production_year: "2010",
+      status: "in-use",
+      description: ""
+    });
     this.props.close();
   }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import data from "./data";
+import DATA from "./data";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
@@ -7,11 +7,16 @@ import Paginate from "../Paginate";
 import SearchBox from "../SearchBox";
 import CreateNewTruck from "../CreateNewTruck";
 import showModal from "../Modal";
+import NUMBERS_OF_ROW_DATA from "../../constants/numbers_of_row_data";
+
+const ROWDATA = DATA.data.slice(0, NUMBERS_OF_ROW_DATA);
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      data: []
+    };
     this.columnDefs = [
       {
         headerName: "Truck plate",
@@ -103,7 +108,21 @@ class App extends React.Component {
 
   handleOnClick() {
     showModal({
-      component: CreateNewTruck
+      component: CreateNewTruck,
+      props: {
+        callBack: this.handleCallBackSubmit.bind(this)
+      }
+    });
+  }
+
+  handleCallBackSubmit(addedData) {
+    console.log(addedData);
+    const data = DATA.data;
+    data.unshift(addedData);
+    const newData = data.slice(0, NUMBERS_OF_ROW_DATA);
+    this.gridApi.setRowData(newData);
+    this.setState({
+      data: data
     });
   }
 
@@ -111,7 +130,13 @@ class App extends React.Component {
     this.gridApi.setQuickFilter(data);
   }
 
-  dataReceivedFromPaginate(data) {}
+  dataReceivedFromPaginate(pageId) {
+    const data = DATA.data.slice(
+      (pageId - 1) * NUMBERS_OF_ROW_DATA,
+      pageId * NUMBERS_OF_ROW_DATA
+    );
+    this.gridApi.setRowData(data);
+  }
 
   render() {
     return (
@@ -123,19 +148,19 @@ class App extends React.Component {
         <div
           className="ag-theme-balham"
           style={{
-            height: "500px",
-            width: "600px"
+            height: "500px"
+            // width: "600px"
           }}
         >
           <AgGridReact
             onGridReady={this.onGridReady.bind(this)}
             columnDefs={this.columnDefs}
-            rowData={data.data}
+            rowData={ROWDATA}
             //   defaultColDef={this.defaultColDef}
           />
         </div>
         <Paginate
-          data={data.data}
+          data={this.state.data}
           dataReceivedFromPaginate={this.dataReceivedFromPaginate.bind(this)}
         />
       </div>
