@@ -1,0 +1,34 @@
+#modal {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* z-index: 10000; */
+  top: 0;
+  left: 0;
+}
+#modal > div {
+  background: lightblue;
+  /* pointer-events: none; */
+}
+#modal:empty {
+  display: none;
+}
+
+#createNewTruck {
+  min-width: 300px;
+  min-height: 200px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.errorMessage {
+  background: red;
+}

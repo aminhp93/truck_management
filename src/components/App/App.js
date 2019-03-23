@@ -3,6 +3,10 @@ import data from "./data";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
+import Paginate from "../Paginate";
+import SearchBox from "../SearchBox";
+import CreateNewTruck from "../CreateNewTruck";
+import showModal from "../Modal";
 
 class App extends React.Component {
   constructor(props) {
@@ -10,7 +14,7 @@ class App extends React.Component {
     this.state = {};
     this.columnDefs = [
       {
-        headerName: "truck_plate",
+        headerName: "Truck plate",
         field: "truck_plate",
         width: 120,
         cellRenderer: function(params) {
@@ -18,7 +22,7 @@ class App extends React.Component {
         }
       },
       {
-        headerName: "cargo_type",
+        headerName: "Cargo type",
         field: "cargo_type",
         width: 120,
         cellRenderer: function(params) {
@@ -26,7 +30,7 @@ class App extends React.Component {
         }
       },
       {
-        headerName: "driver",
+        headerName: "Driver",
         field: "driver",
         width: 120,
         cellRenderer: function(params) {
@@ -34,7 +38,7 @@ class App extends React.Component {
         }
       },
       {
-        headerName: "truck_type",
+        headerName: "Truck type",
         field: "truck_type",
         width: 120,
         cellRenderer: function(params) {
@@ -42,7 +46,7 @@ class App extends React.Component {
         }
       },
       {
-        headerName: "price",
+        headerName: "Price",
         field: "price",
         width: 120,
         cellRenderer: function(params) {
@@ -50,7 +54,7 @@ class App extends React.Component {
         }
       },
       {
-        headerName: "dimenson",
+        headerName: "Dimenson (L-W-H)",
         field: "dimenson",
         width: 120,
         cellRenderer: function(params) {
@@ -58,7 +62,7 @@ class App extends React.Component {
         }
       },
       {
-        headerName: "parking_address",
+        headerName: "Parking address",
         field: "parking_address",
         width: 120,
         cellRenderer: function(params) {
@@ -66,7 +70,7 @@ class App extends React.Component {
         }
       },
       {
-        headerName: "production_year",
+        headerName: "Production year",
         field: "production_year",
         width: 120,
         cellRenderer: function(params) {
@@ -74,7 +78,7 @@ class App extends React.Component {
         }
       },
       {
-        headerName: "status",
+        headerName: "Status",
         field: "status",
         width: 120,
         cellRenderer: function(params) {
@@ -82,7 +86,7 @@ class App extends React.Component {
         }
       },
       {
-        headerName: "description",
+        headerName: "Description",
         field: "description",
         width: 120,
         cellRenderer: function(params) {
@@ -97,21 +101,32 @@ class App extends React.Component {
     this.gridApi = params.api;
   }
 
+  handleOnClick() {
+    showModal({
+      component: CreateNewTruck
+    });
+  }
+
   render() {
     return (
-      <div
-        className="ag-theme-balham"
-        style={{
-          height: "500px",
-          width: "600px"
-        }}
-      >
-        <AgGridReact
-          onGridReady={this.onGridReady.bind(this)}
-          columnDefs={this.columnDefs}
-          rowData={data.data}
-          //   defaultColDef={this.defaultColDef}
-        />
+      <div>
+        <SearchBox />
+        <div onClick={this.handleOnClick.bind(this)}>Add truck</div>
+        <div
+          className="ag-theme-balham"
+          style={{
+            height: "500px",
+            width: "600px"
+          }}
+        >
+          <AgGridReact
+            onGridReady={this.onGridReady.bind(this)}
+            columnDefs={this.columnDefs}
+            rowData={data.data}
+            //   defaultColDef={this.defaultColDef}
+          />
+        </div>
+        <Paginate />
       </div>
     );
   }
