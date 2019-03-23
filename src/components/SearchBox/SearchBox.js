@@ -6,7 +6,7 @@ class SearchBox extends React.Component {
       <div>
         <input
           placeholder="Search"
-          onChange={e => this.props.dataReceiveFromSearchBox(e.target.value)}
+          onChange={e => this.props.dataReceivedFromSearchBox(e.target.value)}
         />
       </div>
     );

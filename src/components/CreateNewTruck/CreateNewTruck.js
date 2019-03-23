@@ -120,7 +120,7 @@ class CreateNewTruck extends React.Component {
                 value={this.state.dataObj.truck_plate}
                 onChange={e => {
                   const dataObj = this.state.dataObj;
-                  dataObj.truck_plate = e.target.data;
+                  dataObj.truck_plate = e.target.value;
                   this.setState({
                     dataObj
                   });
@@ -136,7 +136,7 @@ class CreateNewTruck extends React.Component {
                 value={this.state.dataObj.cargo_type}
                 onChange={e => {
                   const dataObj = this.state.dataObj;
-                  dataObj.cargo_type = e.target.data;
+                  dataObj.cargo_type = e.target.value;
                   this.setState({
                     dataObj
                   });
@@ -152,7 +152,7 @@ class CreateNewTruck extends React.Component {
                 value={this.state.dataObj.driver}
                 onChange={e => {
                   const dataObj = this.state.dataObj;
-                  dataObj.driver = e.target.data;
+                  dataObj.driver = e.target.value;
                   this.setState({
                     dataObj
                   });
@@ -168,7 +168,7 @@ class CreateNewTruck extends React.Component {
                 value={this.state.dataObj.truck_type}
                 onChange={e => {
                   const dataObj = this.state.dataObj;
-                  dataObj.truck_type = e.target.data;
+                  dataObj.truck_type = e.target.value;
                   this.setState({
                     dataObj
                   });
@@ -184,7 +184,7 @@ class CreateNewTruck extends React.Component {
                 value={this.state.price}
                 onChange={e => {
                   const dataObj = this.state.dataObj;
-                  dataObj.price = e.target.data;
+                  dataObj.price = e.target.value;
                   this.setState({
                     dataObj
                   });
@@ -200,7 +200,7 @@ class CreateNewTruck extends React.Component {
                 value={this.state.dataObj.dimenson}
                 onChange={e => {
                   const dataObj = this.state.dataObj;
-                  dataObj.dimenson = e.target.data;
+                  dataObj.dimenson = e.target.value;
                   this.setState({
                     dataObj
                   });
@@ -216,7 +216,7 @@ class CreateNewTruck extends React.Component {
                 value={this.state.parking_address}
                 onChange={e => {
                   const dataObj = this.state.dataObj;
-                  dataObj.parking_address = e.target.data;
+                  dataObj.parking_address = e.target.value;
                   this.setState({
                     dataObj
                   });
@@ -232,7 +232,7 @@ class CreateNewTruck extends React.Component {
                 value={this.state.dataObj.parking_address}
                 onChange={e => {
                   const dataObj = this.state.dataObj;
-                  dataObj.parking_address = e.target.data;
+                  dataObj.parking_address = e.target.value;
                   this.setState({
                     dataObj
                   });
@@ -248,7 +248,7 @@ class CreateNewTruck extends React.Component {
                 value={this.state.dataObj.status}
                 onChange={e => {
                   const dataObj = this.state.dataObj;
-                  dataObj.status = e.target.data;
+                  dataObj.status = e.target.value;
                   this.setState({
                     dataObj
                   });
@@ -264,7 +264,7 @@ class CreateNewTruck extends React.Component {
                 value={this.state.dataObj.description}
                 onChange={e => {
                   const dataObj = this.state.dataObj;
-                  dataObj.description = e.target.data;
+                  dataObj.description = e.target.value;
                   this.setState({
                     dataObj
                   });

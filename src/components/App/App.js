@@ -107,15 +107,17 @@ class App extends React.Component {
     });
   }
 
-  dataReceiveFromSearchBox(data) {
+  dataReceivedFromSearchBox(data) {
     this.gridApi.setQuickFilter(data);
   }
+
+  dataReceivedFromPaginate(data) {}
 
   render() {
     return (
       <div>
         <SearchBox
-          dataReceiveFromSearchBox={this.dataReceiveFromSearchBox.bind(this)}
+          dataReceivedFromSearchBox={this.dataReceivedFromSearchBox.bind(this)}
         />
         <div onClick={this.handleOnClick.bind(this)}>Add truck</div>
         <div
@@ -132,7 +134,10 @@ class App extends React.Component {
             //   defaultColDef={this.defaultColDef}
           />
         </div>
-        <Paginate />
+        <Paginate
+          data={data.data}
+          dataReceivedFromPaginate={this.dataReceivedFromPaginate.bind(this)}
+        />
       </div>
     );
   }
