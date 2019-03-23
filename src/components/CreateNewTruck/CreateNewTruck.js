@@ -5,7 +5,7 @@ class CreateNewTruck extends React.Component {
     super(props);
     this.state = {
       errorMessage: "",
-      truckPlate: ""
+      dataObj: {}
     };
   }
 
@@ -18,61 +18,86 @@ class CreateNewTruck extends React.Component {
   }
 
   checkValidate() {
-    if (!this.state.truckPlate) {
+    if (!this.state.dataObj.truck_plate) {
       this.setState(
         {
           errorMessage: "not validate truck plate"
         },
         () => this.hiddenError()
       );
+      return;
     }
-    if (!this.state.truckPlate) {
+    if (!this.state.dataObj.cargo_type) {
       this.setState(
         {
-          errorMessage: "not validate truck plate"
+          errorMessage: "not validate cargo type"
         },
         () => this.hiddenError()
       );
+      return;
     }
-    if (!this.state.truckPlate) {
+    if (!this.state.dataObj.driver) {
       this.setState(
         {
-          errorMessage: "not validate truck plate"
+          errorMessage: "not validate driver"
         },
         () => this.hiddenError()
       );
+      return;
     }
-    if (!this.state.truckPlate) {
+    if (!this.state.dataObj.truck_type) {
       this.setState(
         {
-          errorMessage: "not validate truck plate"
+          errorMessage: "not validate truck type"
         },
         () => this.hiddenError()
       );
+      return;
     }
-    if (!this.state.truckPlate) {
+    if (!this.state.dataObj.price) {
       this.setState(
         {
-          errorMessage: "not validate truck plate"
+          errorMessage: "not validate price"
         },
         () => this.hiddenError()
       );
+      return;
     }
-    if (!this.state.truckPlate) {
+    if (!this.state.dataObj.dimenson) {
       this.setState(
         {
-          errorMessage: "not validate truck plate"
+          errorMessage: "not validate dimenson"
         },
         () => this.hiddenError()
       );
+      return;
     }
-    if (!this.state.truckPlate) {
+    if (!this.state.dataObj.parking_address) {
       this.setState(
         {
-          errorMessage: "not validate truck plate"
+          errorMessage: "not validate parking address"
         },
         () => this.hiddenError()
       );
+      return;
+    }
+    if (!this.state.dataObj.status) {
+      this.setState(
+        {
+          errorMessage: "not validate status"
+        },
+        () => this.hiddenError()
+      );
+      return;
+    }
+    if (!this.state.dataObj.description) {
+      this.setState(
+        {
+          errorMessage: "not validate description"
+        },
+        () => this.hiddenError()
+      );
+      return;
     }
   }
 
@@ -92,10 +117,12 @@ class CreateNewTruck extends React.Component {
             <div>
               <input
                 placeholder="Truck plate"
-                value={this.state.truck_plate}
+                value={this.state.dataObj.truck_plate}
                 onChange={e => {
+                  const dataObj = this.state.dataObj;
+                  dataObj.truck_plate = e.target.data;
                   this.setState({
-                    truckPlate: e.target.value
+                    dataObj
                   });
                 }}
               />
@@ -106,10 +133,12 @@ class CreateNewTruck extends React.Component {
             <div>
               <input
                 placeholder="Cargo type"
-                value={this.state.cargo_type}
+                value={this.state.dataObj.cargo_type}
                 onChange={e => {
+                  const dataObj = this.state.dataObj;
+                  dataObj.cargo_type = e.target.data;
                   this.setState({
-                    truckPlate: e.target.value
+                    dataObj
                   });
                 }}
               />
@@ -120,10 +149,12 @@ class CreateNewTruck extends React.Component {
             <div>
               <input
                 placeholder="Driver"
-                value={this.state.driver}
+                value={this.state.dataObj.driver}
                 onChange={e => {
+                  const dataObj = this.state.dataObj;
+                  dataObj.driver = e.target.data;
                   this.setState({
-                    driver: e.target.value
+                    dataObj
                   });
                 }}
               />
@@ -134,10 +165,12 @@ class CreateNewTruck extends React.Component {
             <div>
               <input
                 placeholder="Truck type"
-                value={this.state.truck_type}
+                value={this.state.dataObj.truck_type}
                 onChange={e => {
+                  const dataObj = this.state.dataObj;
+                  dataObj.truck_type = e.target.data;
                   this.setState({
-                    truckType: e.target.value
+                    dataObj
                   });
                 }}
               />
@@ -150,8 +183,10 @@ class CreateNewTruck extends React.Component {
                 placeholder="Price"
                 value={this.state.price}
                 onChange={e => {
+                  const dataObj = this.state.dataObj;
+                  dataObj.price = e.target.data;
                   this.setState({
-                    price: e.target.value
+                    dataObj
                   });
                 }}
               />
@@ -162,10 +197,12 @@ class CreateNewTruck extends React.Component {
             <div>
               <input
                 placeholder="Dimenson (L-W-H)"
-                value={this.state.dimenson}
+                value={this.state.dataObj.dimenson}
                 onChange={e => {
+                  const dataObj = this.state.dataObj;
+                  dataObj.dimenson = e.target.data;
                   this.setState({
-                    dimenson: e.target.value
+                    dataObj
                   });
                 }}
               />
@@ -178,8 +215,10 @@ class CreateNewTruck extends React.Component {
                 placeholder="Parking address"
                 value={this.state.parking_address}
                 onChange={e => {
+                  const dataObj = this.state.dataObj;
+                  dataObj.parking_address = e.target.data;
                   this.setState({
-                    parkingAddress: e.target.value
+                    dataObj
                   });
                 }}
               />
@@ -190,10 +229,12 @@ class CreateNewTruck extends React.Component {
             <div>
               <input
                 placeholder="Production year"
-                value={this.state.production_year}
+                value={this.state.dataObj.parking_address}
                 onChange={e => {
+                  const dataObj = this.state.dataObj;
+                  dataObj.parking_address = e.target.data;
                   this.setState({
-                    productionYear: e.target.value
+                    dataObj
                   });
                 }}
               />
@@ -204,10 +245,12 @@ class CreateNewTruck extends React.Component {
             <div>
               <input
                 placeholder="Status"
-                value={this.state.status}
+                value={this.state.dataObj.status}
                 onChange={e => {
+                  const dataObj = this.state.dataObj;
+                  dataObj.status = e.target.data;
                   this.setState({
-                    status: e.target.value
+                    dataObj
                   });
                 }}
               />
@@ -218,10 +261,12 @@ class CreateNewTruck extends React.Component {
             <div>
               <input
                 placeholder="Description"
-                value={this.state.description}
+                value={this.state.dataObj.description}
                 onChange={e => {
+                  const dataObj = this.state.dataObj;
+                  dataObj.description = e.target.data;
                   this.setState({
-                    description: e.target.value
+                    dataObj
                   });
                 }}
               />

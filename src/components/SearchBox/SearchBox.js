@@ -4,7 +4,10 @@ class SearchBox extends React.Component {
   render() {
     return (
       <div>
-        <input placeholder="Search" />
+        <input
+          placeholder="Search"
+          onChange={e => this.props.dataReceiveFromSearchBox(e.target.value)}
+        />
       </div>
     );
   }

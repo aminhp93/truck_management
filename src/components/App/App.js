@@ -107,10 +107,16 @@ class App extends React.Component {
     });
   }
 
+  dataReceiveFromSearchBox(data) {
+    this.gridApi.setQuickFilter(data);
+  }
+
   render() {
     return (
       <div>
-        <SearchBox />
+        <SearchBox
+          dataReceiveFromSearchBox={this.dataReceiveFromSearchBox.bind(this)}
+        />
         <div onClick={this.handleOnClick.bind(this)}>Add truck</div>
         <div
           className="ag-theme-balham"
