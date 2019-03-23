@@ -83,7 +83,7 @@ class Paginate extends React.Component {
     return (
       <div className="paginate">
         <div>
-          1 to{" "}
+          {(this.state.currentPage - 1) * NUMBERS_OF_ROW_DATA + 1} to{" "}
           {this.state.currentPage === this.getTotalPage()
             ? this.state.data.length
             : this.state.currentPage * NUMBERS_OF_ROW_DATA}{" "}
