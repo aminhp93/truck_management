@@ -170,7 +170,7 @@ class CreateNewTruck extends React.Component {
         <div>
           <div className="row">
             <div>Truck plate</div>
-            <div>
+            <div className="rowContent">
               <Input
                 placeholder="30A-50493"
                 value={this.state.dataObj.truck_plate}
@@ -186,7 +186,7 @@ class CreateNewTruck extends React.Component {
           </div>
           <div className="row">
             <div>Cargo type</div>
-            <div>
+            <div className="rowContent">
               <Select
                 isMulti={true}
                 components={{
@@ -196,7 +196,7 @@ class CreateNewTruck extends React.Component {
                 styles={{
                   control: () => ({
                     // none of react-select's styles are passed to <Control />
-                    width: 310,
+                    width: "100%",
                     height: 30
                   })
                 }}
@@ -215,7 +215,7 @@ class CreateNewTruck extends React.Component {
           </div>
           <div className="row">
             <div>Driver</div>
-            <div>
+            <div className="rowContent">
               <Select
                 components={{
                   DropdownIndicator: () => null,
@@ -224,7 +224,7 @@ class CreateNewTruck extends React.Component {
                 styles={{
                   control: () => ({
                     // none of react-select's styles are passed to <Control />
-                    width: 310,
+                    width: "100%",
                     height: 30
                   })
                 }}
@@ -243,7 +243,7 @@ class CreateNewTruck extends React.Component {
           </div>
           <div className="row">
             <div>Truck type</div>
-            <div>
+            <div className="rowContent">
               <Input
                 placeholder="5 ton"
                 value={this.state.dataObj.truck_type}
@@ -259,7 +259,7 @@ class CreateNewTruck extends React.Component {
           </div>
           <div className="row">
             <div>Price</div>
-            <div>
+            <div className="rowContent">
               <Input
                 placeholder="1000000000"
                 value={this.state.price}
@@ -275,7 +275,7 @@ class CreateNewTruck extends React.Component {
           </div>
           <div className="row">
             <div>Dimenson (L-W-H)</div>
-            <div>
+            <div className="rowContent">
               <Input
                 placeholder="10-2-1.5"
                 value={this.state.dataObj.dimenson}
@@ -291,7 +291,7 @@ class CreateNewTruck extends React.Component {
           </div>
           <div className="row parkingAddress">
             <div>Parking address</div>
-            <div>
+            <div className="rowContent">
               <TextField
                 multiline={true}
                 placeholder="No. 128, Hoàn Kiếm street, Hà Nội"
@@ -313,7 +313,7 @@ class CreateNewTruck extends React.Component {
           </div>
           <div className="row">
             <div>Production year</div>
-            <div>
+            <div className="rowContent">
               <Input
                 placeholder="2010"
                 value={this.state.dataObj.production_year}
@@ -329,7 +329,7 @@ class CreateNewTruck extends React.Component {
           </div>
           <div className="row">
             <div>Status</div>
-            <div>
+            <div className="rowContent">
               <Select
                 components={{
                   DropdownIndicator: () => null,
@@ -338,11 +338,11 @@ class CreateNewTruck extends React.Component {
                 styles={{
                   control: () => ({
                     // none of react-select's styles are passed to <Control />
-                    width: 310,
+                    width: "100%",
                     height: 30
                   })
                 }}
-                placeholder="in-use"
+                placeholder="In-use"
                 value={this.state.dataObj.status}
                 onChange={value => {
                   const dataObj = this.state.dataObj;
@@ -357,7 +357,7 @@ class CreateNewTruck extends React.Component {
           </div>
           <div className="row description">
             <div>Description</div>
-            <div>
+            <div className="rowContent">
               <TextField
                 multiline={true}
                 placeholder="Description"

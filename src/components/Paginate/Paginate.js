@@ -102,7 +102,7 @@ class Paginate extends React.Component {
           <div onClick={this.handleClickPreviousPage.bind(this)}>
             <NavigateBefore />
           </div>
-          <div>
+          <div className="pageNumber">
             Page {this.state.currentPage} of {this.getTotalPage()}
           </div>
           <div onClick={this.handleClickNextPage.bind(this)}>
