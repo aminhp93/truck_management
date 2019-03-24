@@ -4,6 +4,8 @@ import DATA from "./data";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
+import { RemoveCircle } from "@material-ui/icons";
+import { Button } from "@material-ui/core";
 import Paginate from "../Paginate";
 import SearchBox from "../SearchBox";
 import CreateNewTruck from "../CreateNewTruck";
@@ -26,10 +28,14 @@ class App extends React.Component {
         width: 120,
         cellRenderer: function(params) {
           const div = document.createElement("div");
-          div.innerHTML = params.data.truck_plate || "";
+          div.className = "flex";
+          const divText = document.createElement("span");
+          divText.innerHTML = params.data.truck_plate || "";
           const img = document.createElement("span");
-          img.innerHTML = "remove";
+          img.className = "removeIcon";
+          ReactDOM.render(<RemoveCircle />, img);
           div.appendChild(img);
+          div.appendChild(divText);
           img.onclick = function() {
             that.state.data.map((item, index) => {
               if (item.truck_plate === params.data.truck_plate) {
@@ -43,7 +49,6 @@ class App extends React.Component {
               data: that.state.data
             });
           };
-
           return div;
         }
       },
@@ -162,15 +167,25 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <SearchBox
-          dataReceivedFromSearchBox={this.dataReceivedFromSearchBox.bind(this)}
-        />
-        <div onClick={this.handleOnClick.bind(this)}>Add truck</div>
+      <div className="app">
+        <div className="title">Truck Management</div>
+        <div className="header">
+          <SearchBox
+            dataReceivedFromSearchBox={this.dataReceivedFromSearchBox.bind(
+              this
+            )}
+          />
+          <div onClick={this.handleOnClick.bind(this)}>
+            <Button variant="contained" color="primary">
+              Add truck
+            </Button>
+          </div>
+        </div>
+
         <div
           className="ag-theme-balham"
           style={{
-            height: "500px"
+            height: "300px"
             // width: "600px"
           }}
         >

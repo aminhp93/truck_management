@@ -1,4 +1,5 @@
 #modal {
+  background: rgba(19, 23, 34, 0.7);
   height: 100%;
   width: 100%;
   position: fixed;
@@ -27,12 +28,20 @@
   min-height: 200px;
   width: 100%;
   margin: 0 200px;
+  background: white;
+  border-radius: 4px;
+  padding: 20px;
 }
 
 .row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 24px;
+  padding: 4px;
+}
+.row:nth-of-type(odd) {
+  background: lightblue;
 }
 
 .errorMessage {
@@ -46,4 +55,47 @@
 .pageContainer {
   display: flex;
   justify-content: space-between;
+}
+
+.removeIcon {
+  display: none;
+}
+.ag-row-hover .removeIcon {
+  display: inline-block;
+  padding-right: 4px;
+}
+
+.flex {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+.app .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+#createNewTruck .footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.title {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+#createNewTruck .title {
+  margin-top: 0px;
+}
+
+.app {
+  padding: 8px;
 }

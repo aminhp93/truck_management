@@ -1,6 +1,12 @@
 import React from "react";
 import NUMBERS_OF_ROW_DATA from "../../constants/numbers_of_row_data";
 import DATA from "../App/data";
+import {
+  FirstPage,
+  LastPage,
+  NavigateNext,
+  NavigateBefore
+} from "@material-ui/icons";
 
 class Paginate extends React.Component {
   constructor(props) {
@@ -90,13 +96,21 @@ class Paginate extends React.Component {
           of {this.state.data.length}
         </div>
         <div className="pageContainer">
-          <div onClick={this.handleClickFirstPage.bind(this)}>First</div>
-          <div onClick={this.handleClickPreviousPage.bind(this)}>Previous</div>
+          <div onClick={this.handleClickFirstPage.bind(this)}>
+            <FirstPage />
+          </div>
+          <div onClick={this.handleClickPreviousPage.bind(this)}>
+            <NavigateBefore />
+          </div>
           <div>
             Page {this.state.currentPage} of {this.getTotalPage()}
           </div>
-          <div onClick={this.handleClickNextPage.bind(this)}>Next</div>
-          <div onClick={this.handleClickLastPage.bind(this)}>Last</div>
+          <div onClick={this.handleClickNextPage.bind(this)}>
+            <NavigateNext />
+          </div>
+          <div onClick={this.handleClickLastPage.bind(this)}>
+            <LastPage />
+          </div>
         </div>
       </div>
     );

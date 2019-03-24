@@ -1,4 +1,5 @@
 import React from "react";
+import { Button, Input } from "@material-ui/core";
 
 class CreateNewTruck extends React.Component {
   constructor(props) {
@@ -122,12 +123,12 @@ class CreateNewTruck extends React.Component {
     return (
       <div id="createNewTruck">
         <div className="errorMessage">{this.state.errorMessage}</div>
-        <div onClick={() => this.props.close()}>Close</div>
+        <div className="title">ADD A NEW TRUCK</div>
         <div>
           <div className="row">
             <div>Truck plate</div>
             <div>
-              <input
+              <Input
                 placeholder="Truck plate"
                 value={this.state.dataObj.truck_plate}
                 onChange={e => {
@@ -143,7 +144,7 @@ class CreateNewTruck extends React.Component {
           <div className="row">
             <div>Cargo type</div>
             <div>
-              <input
+              <Input
                 placeholder="Cargo type"
                 value={this.state.dataObj.cargo_type}
                 onChange={e => {
@@ -159,7 +160,7 @@ class CreateNewTruck extends React.Component {
           <div className="row">
             <div>Driver</div>
             <div>
-              <input
+              <Input
                 placeholder="Driver"
                 value={this.state.dataObj.driver}
                 onChange={e => {
@@ -175,7 +176,7 @@ class CreateNewTruck extends React.Component {
           <div className="row">
             <div>Truck type</div>
             <div>
-              <input
+              <Input
                 placeholder="Truck type"
                 value={this.state.dataObj.truck_type}
                 onChange={e => {
@@ -191,7 +192,7 @@ class CreateNewTruck extends React.Component {
           <div className="row">
             <div>Price</div>
             <div>
-              <input
+              <Input
                 placeholder="Price"
                 value={this.state.price}
                 onChange={e => {
@@ -207,7 +208,7 @@ class CreateNewTruck extends React.Component {
           <div className="row">
             <div>Dimenson (L-W-H)</div>
             <div>
-              <input
+              <Input
                 placeholder="Dimenson (L-W-H)"
                 value={this.state.dataObj.dimenson}
                 onChange={e => {
@@ -223,7 +224,7 @@ class CreateNewTruck extends React.Component {
           <div className="row">
             <div>Parking address</div>
             <div>
-              <input
+              <Input
                 placeholder="Parking address"
                 value={this.state.parking_address}
                 onChange={e => {
@@ -239,7 +240,7 @@ class CreateNewTruck extends React.Component {
           <div className="row">
             <div>Production year</div>
             <div>
-              <input
+              <Input
                 placeholder="Production year"
                 value={this.state.dataObj.parking_address}
                 onChange={e => {
@@ -255,7 +256,7 @@ class CreateNewTruck extends React.Component {
           <div className="row">
             <div>Status</div>
             <div>
-              <input
+              <Input
                 placeholder="Status"
                 value={this.state.dataObj.status}
                 onChange={e => {
@@ -271,7 +272,7 @@ class CreateNewTruck extends React.Component {
           <div className="row">
             <div>Description</div>
             <div>
-              <input
+              <Input
                 placeholder="Description"
                 value={this.state.dataObj.description}
                 onChange={e => {
@@ -285,7 +286,18 @@ class CreateNewTruck extends React.Component {
             </div>
           </div>
         </div>
-        <div onClick={() => this.handleSubmit()}>Submit</div>
+        <div className="footer">
+          <div onClick={() => this.props.close()}>
+            <Button variant="contained" color="secondary">
+              Close
+            </Button>
+          </div>
+          <div onClick={() => this.handleSubmit()}>
+            <Button variant="contained" color="primary">
+              Submit
+            </Button>
+          </div>
+        </div>
       </div>
     );
   }

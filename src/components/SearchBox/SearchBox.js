@@ -1,10 +1,11 @@
 import React from "react";
+import Input from "@material-ui/core/Input";
 
 class SearchBox extends React.Component {
   render() {
     return (
       <div>
-        <input
+        <Input
           placeholder="Search"
           onChange={e => this.props.dataReceivedFromSearchBox(e.target.value)}
         />
