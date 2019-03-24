@@ -1,6 +1,7 @@
 export default {
   data: [
     {
+      id: "1",
       truck_plate: "30A-50491",
       cargo_type: "Computer, Electronic",
       driver: "Nguyen Van A",
@@ -13,6 +14,7 @@ export default {
       description: ""
     },
     {
+      id: "2",
       truck_plate: "30A-50492",
       cargo_type: "Computer, Electronic",
       driver: "Nguyen Van B",
@@ -25,6 +27,7 @@ export default {
       description: ""
     },
     {
+      id: "3",
       truck_plate: "30A-50493",
       cargo_type: "Computer, Electronic",
       driver: "Nguyen Van C",
@@ -37,6 +40,7 @@ export default {
       description: ""
     },
     {
+      id: "4",
       truck_plate: "30A-50494",
       cargo_type: "Computer, Electronic",
       driver: "Nguyen Van C",
@@ -49,6 +53,7 @@ export default {
       description: ""
     },
     {
+      id: "5",
       truck_plate: "30A-50495",
       cargo_type: "Computer, Electronic",
       driver: "Nguyen Van C",
@@ -61,6 +66,7 @@ export default {
       description: ""
     },
     {
+      id: "6",
       truck_plate: "30A-50496",
       cargo_type: "Computer, Electronic",
       driver: "Nguyen Van C",
@@ -73,6 +79,7 @@ export default {
       description: ""
     },
     {
+      id: "7",
       truck_plate: "30A-50497",
       cargo_type: "Computer, Electronic",
       driver: "Nguyen Van C",
@@ -85,6 +92,150 @@ export default {
       description: ""
     },
     {
+      id: "8",
+      truck_plate: "30A-50498",
+      cargo_type: "Computer, Electronic",
+      driver: "Nguyen Van C",
+      truck_type: "5 ton",
+      price: "1000000000",
+      dimenson: "10-2-1.5",
+      parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
+      production_year: "2010",
+      status: "In-use",
+      description: ""
+    },
+    {
+      id: "9",
+      truck_plate: "30A-50498",
+      cargo_type: "Computer, Electronic",
+      driver: "Nguyen Van C",
+      truck_type: "5 ton",
+      price: "1000000000",
+      dimenson: "10-2-1.5",
+      parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
+      production_year: "2010",
+      status: "In-use",
+      description: ""
+    },
+    {
+      id: "10",
+      truck_plate: "30A-50498",
+      cargo_type: "Computer, Electronic",
+      driver: "Nguyen Van C",
+      truck_type: "5 ton",
+      price: "1000000000",
+      dimenson: "10-2-1.5",
+      parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
+      production_year: "2010",
+      status: "In-use",
+      description: ""
+    },
+    {
+      id: "11",
+      truck_plate: "30A-50491",
+      cargo_type: "Computer, Electronic",
+      driver: "Nguyen Van A",
+      truck_type: "5 ton",
+      price: "1000000000",
+      dimenson: "10-2-1.5",
+      parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
+      production_year: "2010",
+      status: "In-use",
+      description: ""
+    },
+    {
+      id: "12",
+      truck_plate: "30A-50492",
+      cargo_type: "Computer, Electronic",
+      driver: "Nguyen Van B",
+      truck_type: "5 ton",
+      price: "1000000000",
+      dimenson: "10-2-1.5",
+      parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
+      production_year: "2010",
+      status: "In-use",
+      description: ""
+    },
+    {
+      id: "13",
+      truck_plate: "30A-50493",
+      cargo_type: "Computer, Electronic",
+      driver: "Nguyen Van C",
+      truck_type: "5 ton",
+      price: "1000000000",
+      dimenson: "10-2-1.5",
+      parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
+      production_year: "2010",
+      status: "In-use",
+      description: ""
+    },
+    {
+      id: "14",
+      truck_plate: "30A-50494",
+      cargo_type: "Computer, Electronic",
+      driver: "Nguyen Van C",
+      truck_type: "5 ton",
+      price: "1000000000",
+      dimenson: "10-2-1.5",
+      parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
+      production_year: "2010",
+      status: "In-use",
+      description: ""
+    },
+    {
+      id: "15",
+      truck_plate: "30A-50495",
+      cargo_type: "Computer, Electronic",
+      driver: "Nguyen Van C",
+      truck_type: "5 ton",
+      price: "1000000000",
+      dimenson: "10-2-1.5",
+      parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
+      production_year: "2010",
+      status: "In-use",
+      description: ""
+    },
+    {
+      id: "16",
+      truck_plate: "30A-50496",
+      cargo_type: "Computer, Electronic",
+      driver: "Nguyen Van C",
+      truck_type: "5 ton",
+      price: "1000000000",
+      dimenson: "10-2-1.5",
+      parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
+      production_year: "2010",
+      status: "In-use",
+      description: ""
+    },
+    {
+      id: "17",
+      truck_plate: "30A-50497",
+      cargo_type: "Computer, Electronic",
+      driver: "Nguyen Van C",
+      truck_type: "5 ton",
+      price: "1000000000",
+      dimenson: "10-2-1.5",
+      parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
+      production_year: "2010",
+      status: "In-use",
+      description: ""
+    },
+    {
+      id: "18",
+      truck_plate: "30A-50498",
+      cargo_type: "Computer, Electronic",
+      driver: "Nguyen Van C",
+      truck_type: "5 ton",
+      price: "1000000000",
+      dimenson: "10-2-1.5",
+      parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
+      production_year: "2010",
+      status: "In-use",
+      description: ""
+    },
+    {
+      id: "19",
       truck_plate: "30A-50498",
       cargo_type: "Computer, Electronic",
       driver: "Nguyen Van C",

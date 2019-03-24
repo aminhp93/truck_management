@@ -4,7 +4,7 @@ import DATA from "./data";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
-import { RemoveCircle, EditAttributes } from "@material-ui/icons";
+import { RemoveCircle, Edit } from "@material-ui/icons";
 import { Button } from "@material-ui/core";
 import Paginate from "../Paginate";
 import SearchBox from "../SearchBox";
@@ -34,7 +34,7 @@ class App extends React.Component {
 
           const editIcon = document.createElement("span");
           editIcon.className = "editIcon";
-          ReactDOM.render(<EditAttributes />, editIcon);
+          ReactDOM.render(<Edit />, editIcon);
           editIcon.onclick = function() {
             showModal({
               component: CreateNewTruck,
@@ -49,7 +49,7 @@ class App extends React.Component {
           ReactDOM.render(<RemoveCircle />, removeIcon);
           removeIcon.onclick = function() {
             that.state.data.map((item, index) => {
-              if (item.truck_plate === params.data.truck_plate) {
+              if (item.id === params.data.id) {
                 that.state.data.splice(index, 1);
                 return;
               }
@@ -159,7 +159,7 @@ class App extends React.Component {
   handleCallBackEdit(editedData) {
     const data = this.state.data;
     data.map((item, index) => {
-      if (item.cargo_plate === editedData.cargo_plate) {
+      if (item.id === editedData.id) {
         data.splice(index, 1);
         data.unshift(editedData);
         return;
@@ -167,6 +167,9 @@ class App extends React.Component {
     });
     const newData = data.slice(0, NUMBERS_OF_ROW_DATA);
     this.gridApi.setRowData(newData);
+    this.setState({
+      data
+    });
   }
 
   handleCallBackAdd(addedData) {
@@ -211,14 +214,15 @@ class App extends React.Component {
         <div
           className="ag-theme-balham"
           style={{
-            height: "300px"
-            // width: "600px"
+            flex: 1
           }}
         >
           <AgGridReact
             onGridReady={this.onGridReady.bind(this)}
             columnDefs={this.columnDefs}
             rowData={ROWDATA}
+            enableSorting={true}
+            enableFilter={true}
             //   defaultColDef={this.defaultColDef}
           />
         </div>

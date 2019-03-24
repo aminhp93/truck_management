@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, TextField, Input } from "@material-ui/core";
 import Select from "react-select";
+import uuidv4 from "uuid/v4";
 
 const cargoTypeOptions = [
   { value: "Computer", label: "Computer" },
@@ -50,6 +51,7 @@ class CreateNewTruck extends React.Component {
 
   mapData(data) {
     const obj = {};
+    obj.id = data.id;
     obj.truck_plate = data.truck_plate;
     obj.cargo_type = [];
     data.cargo_type.split(",").map(item => {
@@ -69,8 +71,8 @@ class CreateNewTruck extends React.Component {
     obj.production_year = data.production_year;
     obj.description = data.description;
     obj.status = {
-      label: obj.status,
-      value: obj.status
+      label: data.status,
+      value: data.status
     };
     return obj;
   }
@@ -202,6 +204,11 @@ class CreateNewTruck extends React.Component {
   handleSubmit() {
     if (!this.checkValidate()) return;
     const obj = {};
+    if (!this.props.data) {
+      obj.id = uuidv4();
+    } else {
+      obj.id = this.props.data.id;
+    }
     obj.truck_plate = this.state.dataObj.truck_plate;
     obj.cargo_type = "";
     this.state.dataObj.cargo_type.map((item, index) => {
