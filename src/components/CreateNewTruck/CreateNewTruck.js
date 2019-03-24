@@ -36,14 +36,30 @@ class CreateNewTruck extends React.Component {
       errorMessage: "",
       dataObj: {},
       textCounterDescription: 0,
-      textCounterParkingAddress: 0
+      textCounterParkingAddress: 0,
+      errorTruckPlate: false,
+      errorCargoType: false,
+      errorTruckType: false,
+      errorPrice: false,
+      errorDimenson: false,
+      errorProductionYear: false,
+      errorParkingAddress: false,
+      errorDescription: false
     };
   }
 
   hiddenError() {
     setTimeout(() => {
       this.setState({
-        errorMessage: ""
+        errorMessage: "",
+        errorTruckPlate: false,
+        errorCargoType: false,
+        errorTruckType: false,
+        errorPrice: false,
+        errorDimenson: false,
+        errorProductionYear: false,
+        errorParkingAddress: false,
+        errorDescription: false
       });
     }, 4000);
   }
@@ -55,22 +71,27 @@ class CreateNewTruck extends React.Component {
     ) {
       this.setState(
         {
-          errorMessage: "Not validate truck plate"
+          errorMessage: "Not validate truck plate",
+          errorTruckPlate: true
         },
         () => this.hiddenError()
       );
       return false;
     }
-    if (!this.state.dataObj.cargo_type) {
+    if (
+      !this.state.dataObj.cargo_type ||
+      !this.state.dataObj.cargo_type.length
+    ) {
       this.setState(
         {
-          errorMessage: "Not validate cargo type"
+          errorMessage: "Not validate cargo type",
+          errorCargoType: true
         },
         () => this.hiddenError()
       );
       return false;
     }
-    if (!this.state.dataObj.driver) {
+    if (!this.state.dataObj.driver || !this.state.dataObj.driver.value) {
       this.setState(
         {
           errorMessage: "Not validate driver"
@@ -82,7 +103,8 @@ class CreateNewTruck extends React.Component {
     if (!this.state.dataObj.truck_type) {
       this.setState(
         {
-          errorMessage: "Not validate truck type"
+          errorMessage: "Not validate truck type",
+          errorTruckType: true
         },
         () => this.hiddenError()
       );
@@ -91,7 +113,8 @@ class CreateNewTruck extends React.Component {
     if (!this.state.dataObj.price) {
       this.setState(
         {
-          errorMessage: "Not validate price"
+          errorMessage: "Not validate price",
+          errorPrice: true
         },
         () => this.hiddenError()
       );
@@ -100,7 +123,18 @@ class CreateNewTruck extends React.Component {
     if (!this.state.dataObj.dimenson) {
       this.setState(
         {
-          errorMessage: "Not validate dimenson"
+          errorMessage: "Not validate dimenson",
+          errorDimenson: true
+        },
+        () => this.hiddenError()
+      );
+      return false;
+    }
+    if (!this.state.dataObj.production_year) {
+      this.setState(
+        {
+          errorMessage: "Not validate production year",
+          errorProductionYear: true
         },
         () => this.hiddenError()
       );
@@ -109,13 +143,14 @@ class CreateNewTruck extends React.Component {
     if (!this.state.dataObj.parking_address) {
       this.setState(
         {
-          errorMessage: "Not validate parking address"
+          errorMessage: "Not validate parking address",
+          errorParkingAddress: true
         },
         () => this.hiddenError()
       );
       return false;
     }
-    if (!this.state.dataObj.status) {
+    if (!this.state.dataObj.status || !this.state.dataObj.status.value) {
       this.setState(
         {
           errorMessage: "Not validate status"
@@ -127,7 +162,8 @@ class CreateNewTruck extends React.Component {
     if (!this.state.dataObj.description) {
       this.setState(
         {
-          errorMessage: "Not validate description"
+          errorMessage: "Not validate description",
+          errorDescription: true
         },
         () => this.hiddenError()
       );
@@ -138,7 +174,25 @@ class CreateNewTruck extends React.Component {
 
   handleSubmit() {
     if (!this.checkValidate()) return;
-    this.props.callBack(this.state.dataObj);
+    const obj = {};
+    obj.description = this.state.dataObj.description;
+    obj.dimenson = this.state.dataObj.dimenson;
+    obj.driver = this.state.dataObj.driver.value;
+    obj.parking_address = this.state.dataObj.parking_address;
+    obj.price = this.state.dataObj.price;
+    obj.production_year = this.state.dataObj.production_year;
+    obj.status = this.state.dataObj.status.value;
+    obj.truck_plate = this.state.dataObj.truck_plate;
+    obj.truck_type = this.state.dataObj.truck_type;
+    obj.cargo_type = "";
+    this.state.dataObj.cargo_type.map((item, index) => {
+      if (index === this.state.dataObj.cargo_type.length - 1) {
+        obj.cargo_type += item.value;
+      } else {
+        obj.cargo_type += item.value + ", ";
+      }
+    });
+    this.props.callBack(obj);
     this.setState(
       {
         successMessage: "Your truck has been added successfully"
@@ -150,11 +204,6 @@ class CreateNewTruck extends React.Component {
       }
     );
   }
-
-  handleChange = selectedOption => {
-    this.setState({ selectedOption });
-    console.log(`Option selected:`, selectedOption);
-  };
 
   render() {
     return (
@@ -172,6 +221,7 @@ class CreateNewTruck extends React.Component {
             <div>Truck plate</div>
             <div className="rowContent">
               <Input
+                error={this.state.errorTruckPlate ? true : false}
                 placeholder="30A-50493"
                 value={this.state.dataObj.truck_plate}
                 onChange={e => {
@@ -245,6 +295,7 @@ class CreateNewTruck extends React.Component {
             <div>Truck type</div>
             <div className="rowContent">
               <Input
+                error={this.state.errorTruckType ? true : false}
                 placeholder="5 ton"
                 value={this.state.dataObj.truck_type}
                 onChange={e => {
@@ -261,6 +312,7 @@ class CreateNewTruck extends React.Component {
             <div>Price</div>
             <div className="rowContent">
               <Input
+                error={this.state.errorPrice ? true : false}
                 placeholder="1000000000"
                 value={this.state.price}
                 onChange={e => {
@@ -277,6 +329,7 @@ class CreateNewTruck extends React.Component {
             <div>Dimenson (L-W-H)</div>
             <div className="rowContent">
               <Input
+                error={this.state.errorDimenson ? true : false}
                 placeholder="10-2-1.5"
                 value={this.state.dataObj.dimenson}
                 onChange={e => {
@@ -293,6 +346,7 @@ class CreateNewTruck extends React.Component {
             <div>Parking address</div>
             <div className="rowContent">
               <TextField
+                error={this.state.errorParkingAddress ? true : false}
                 multiline={true}
                 placeholder="No. 128, Hoàn Kiếm street, Hà Nội"
                 value={this.state.parking_address}
@@ -315,6 +369,7 @@ class CreateNewTruck extends React.Component {
             <div>Production year</div>
             <div className="rowContent">
               <Input
+                error={this.state.errorProductionYear ? true : false}
                 placeholder="2010"
                 value={this.state.dataObj.production_year}
                 onChange={e => {
@@ -325,6 +380,30 @@ class CreateNewTruck extends React.Component {
                   });
                 }}
               />
+            </div>
+          </div>
+
+          <div className="row description">
+            <div>Description</div>
+            <div className="rowContent">
+              <TextField
+                error={this.state.errorDescription ? true : false}
+                multiline={true}
+                placeholder="Description"
+                value={this.state.dataObj.description}
+                onChange={e => {
+                  if (e.target.value.length > 200) return;
+                  const dataObj = this.state.dataObj;
+                  dataObj.description = e.target.value;
+                  this.setState({
+                    dataObj,
+                    textCounterDescription: e.target.value.length
+                  });
+                }}
+              />
+              <div className="textCounter">
+                {this.state.textCounterDescription}/200
+              </div>
             </div>
           </div>
           <div className="row">
@@ -353,28 +432,6 @@ class CreateNewTruck extends React.Component {
                 }}
                 options={statusOptions}
               />
-            </div>
-          </div>
-          <div className="row description">
-            <div>Description</div>
-            <div className="rowContent">
-              <TextField
-                multiline={true}
-                placeholder="Description"
-                value={this.state.dataObj.description}
-                onChange={e => {
-                  if (e.target.value.length > 200) return;
-                  const dataObj = this.state.dataObj;
-                  dataObj.description = e.target.value;
-                  this.setState({
-                    dataObj,
-                    textCounterDescription: e.target.value.length
-                  });
-                }}
-              />
-              <div className="textCounter">
-                {this.state.textCounterDescription}/200
-              </div>
             </div>
           </div>
         </div>

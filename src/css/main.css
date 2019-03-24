@@ -57,10 +57,12 @@
   justify-content: space-between;
 }
 
-.removeIcon {
+.removeIcon,
+.editIcon {
   display: none;
 }
-.ag-row-hover .removeIcon {
+.ag-row-hover .removeIcon,
+.ag-row-hover .editIcon {
   display: inline-block;
   padding-right: 4px;
 }

@@ -4,7 +4,7 @@ import DATA from "./data";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
-import { RemoveCircle } from "@material-ui/icons";
+import { RemoveCircle, EditAttributes } from "@material-ui/icons";
 import { Button } from "@material-ui/core";
 import Paginate from "../Paginate";
 import SearchBox from "../SearchBox";
@@ -31,12 +31,11 @@ class App extends React.Component {
           div.className = "flex";
           const divText = document.createElement("span");
           divText.innerHTML = params.data.truck_plate || "";
-          const img = document.createElement("span");
-          img.className = "removeIcon";
-          ReactDOM.render(<RemoveCircle />, img);
-          div.appendChild(img);
-          div.appendChild(divText);
-          img.onclick = function() {
+
+          const editIcon = document.createElement("span");
+          editIcon.className = "editIcon";
+          ReactDOM.render(<EditAttributes />, editIcon);
+          editIcon.onclick = function() {
             that.state.data.map((item, index) => {
               if (item.truck_plate === params.data.truck_plate) {
                 that.state.data.splice(index, 1);
@@ -49,6 +48,26 @@ class App extends React.Component {
               data: that.state.data
             });
           };
+          const removeIcon = document.createElement("span");
+          removeIcon.className = "removeIcon";
+          ReactDOM.render(<RemoveCircle />, removeIcon);
+          removeIcon.onclick = function() {
+            that.state.data.map((item, index) => {
+              if (item.truck_plate === params.data.truck_plate) {
+                that.state.data.splice(index, 1);
+                return;
+              }
+            });
+            const newData = that.state.data.slice(0, NUMBERS_OF_ROW_DATA);
+            that.gridApi.setRowData(newData);
+            that.setState({
+              data: that.state.data
+            });
+          };
+
+          div.appendChild(editIcon);
+          div.appendChild(removeIcon);
+          div.appendChild(divText);
           return div;
         }
       },
