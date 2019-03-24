@@ -1,12 +1,42 @@
 import React from "react";
-import { Button, Input } from "@material-ui/core";
+import { Button, TextField, Input } from "@material-ui/core";
+import Select from "react-select";
+
+const cargoTypeOptions = [
+  { value: "Computer", label: "Computer" },
+  { value: "Electronic", label: "Electronic" },
+  { value: "Vegetable", label: "Vegetable" },
+  { value: "Kid toys", label: "Kid toys" },
+  { value: "Cargo Type 5", label: "Cargo Type 5" },
+  { value: "Cargo Type 6", label: "Cargo Type 6" },
+  { value: "Cargo Type 7", label: "Cargo Type 7" },
+  { value: "Cargo Type 8", label: "Cargo Type 8" },
+  { value: "Cargo Type 9", label: "Cargo Type 9" },
+  { value: "Cargo Type 10", label: "Cargo Type 10" },
+  { value: "Cargo Type 11", label: "Cargo Type 11" },
+  { value: "Cargo Type 12", label: "Cargo Type 12" }
+];
+
+const statusOptions = [
+  { value: "In-use", label: "In-use" },
+  { value: "New", label: "New" },
+  { value: "Stopped", label: "Stopped" }
+];
+
+const driverOptions = [
+  { value: "Nguyen Van A", label: "Nguyen Van A" },
+  { value: "Nguyen Van B", label: "Nguyen Van B" },
+  { value: "Nguyen Van C", label: "Nguyen Van C" }
+];
 
 class CreateNewTruck extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       errorMessage: "",
-      dataObj: {}
+      dataObj: {},
+      textCounterDescription: 0,
+      textCounterParkingAddress: 0
     };
   }
 
@@ -19,117 +49,130 @@ class CreateNewTruck extends React.Component {
   }
 
   checkValidate() {
-    if (!this.state.dataObj.truck_plate) {
+    if (
+      !this.state.dataObj.truck_plate ||
+      !/^[0-9]{2}[A-Z]{1}-[0-9]{5}$/.test(this.state.dataObj.truck_plate)
+    ) {
       this.setState(
         {
-          errorMessage: "not validate truck plate"
+          errorMessage: "Not validate truck plate"
         },
         () => this.hiddenError()
       );
-      return;
+      return false;
     }
     if (!this.state.dataObj.cargo_type) {
       this.setState(
         {
-          errorMessage: "not validate cargo type"
+          errorMessage: "Not validate cargo type"
         },
         () => this.hiddenError()
       );
-      return;
+      return false;
     }
     if (!this.state.dataObj.driver) {
       this.setState(
         {
-          errorMessage: "not validate driver"
+          errorMessage: "Not validate driver"
         },
         () => this.hiddenError()
       );
-      return;
+      return false;
     }
     if (!this.state.dataObj.truck_type) {
       this.setState(
         {
-          errorMessage: "not validate truck type"
+          errorMessage: "Not validate truck type"
         },
         () => this.hiddenError()
       );
-      return;
+      return false;
     }
     if (!this.state.dataObj.price) {
       this.setState(
         {
-          errorMessage: "not validate price"
+          errorMessage: "Not validate price"
         },
         () => this.hiddenError()
       );
-      return;
+      return false;
     }
     if (!this.state.dataObj.dimenson) {
       this.setState(
         {
-          errorMessage: "not validate dimenson"
+          errorMessage: "Not validate dimenson"
         },
         () => this.hiddenError()
       );
-      return;
+      return false;
     }
     if (!this.state.dataObj.parking_address) {
       this.setState(
         {
-          errorMessage: "not validate parking address"
+          errorMessage: "Not validate parking address"
         },
         () => this.hiddenError()
       );
-      return;
+      return false;
     }
     if (!this.state.dataObj.status) {
       this.setState(
         {
-          errorMessage: "not validate status"
+          errorMessage: "Not validate status"
         },
         () => this.hiddenError()
       );
-      return;
+      return false;
     }
     if (!this.state.dataObj.description) {
       this.setState(
         {
-          errorMessage: "not validate description"
+          errorMessage: "Not validate description"
         },
         () => this.hiddenError()
       );
-      return;
+      return false;
     }
+    return true;
   }
 
   handleSubmit() {
-    // if (!this.checkValidate()) return;
-    this.props.callBack({
-      truck_plate: "30A-50491234",
-      cargo_type: "Computer, Electronic",
-      driver: "Nguyen Van A",
-      truck_type: "5 ton",
-      price: "1000000000",
-      dimenson: "10-2-1.5",
-      parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
-      production_year: "2010",
-      status: "in-use",
-      description: ""
-    });
-    this.props.close();
+    if (!this.checkValidate()) return;
+    this.props.callBack(this.state.dataObj);
+    this.setState(
+      {
+        successMessage: "Your truck has been added successfully"
+      },
+      () => {
+        setTimeout(() => {
+          this.props.close();
+        }, 2000);
+      }
+    );
   }
+
+  handleChange = selectedOption => {
+    this.setState({ selectedOption });
+    console.log(`Option selected:`, selectedOption);
+  };
 
   render() {
     return (
       <div id="createNewTruck">
-        <div className="errorMessage">{this.state.errorMessage}</div>
+        <div
+          className={`message ${this.state.successMessage ? "success" : ""} ${
+            this.state.errorMessage ? "error" : ""
+          }`}
+        >
+          {this.state.errorMessage || this.state.successMessage}
+        </div>
         <div className="title">ADD A NEW TRUCK</div>
         <div>
           <div className="row">
             <div>Truck plate</div>
             <div>
               <Input
-                placeholder="Truck plate"
+                placeholder="30A-50493"
                 value={this.state.dataObj.truck_plate}
                 onChange={e => {
                   const dataObj = this.state.dataObj;
@@ -144,32 +187,57 @@ class CreateNewTruck extends React.Component {
           <div className="row">
             <div>Cargo type</div>
             <div>
-              <Input
-                placeholder="Cargo type"
+              <Select
+                isMulti={true}
+                components={{
+                  DropdownIndicator: () => null,
+                  IndicatorSeparator: () => null
+                }}
+                styles={{
+                  control: () => ({
+                    // none of react-select's styles are passed to <Control />
+                    width: 310,
+                    height: 30
+                  })
+                }}
+                placeholder="Computer, Electronic"
                 value={this.state.dataObj.cargo_type}
-                onChange={e => {
+                onChange={value => {
                   const dataObj = this.state.dataObj;
-                  dataObj.cargo_type = e.target.value;
+                  dataObj.cargo_type = value;
                   this.setState({
                     dataObj
                   });
                 }}
+                options={cargoTypeOptions}
               />
             </div>
           </div>
           <div className="row">
             <div>Driver</div>
             <div>
-              <Input
-                placeholder="Driver"
+              <Select
+                components={{
+                  DropdownIndicator: () => null,
+                  IndicatorSeparator: () => null
+                }}
+                styles={{
+                  control: () => ({
+                    // none of react-select's styles are passed to <Control />
+                    width: 310,
+                    height: 30
+                  })
+                }}
+                placeholder="Nguyen Van A"
                 value={this.state.dataObj.driver}
-                onChange={e => {
+                onChange={value => {
                   const dataObj = this.state.dataObj;
-                  dataObj.driver = e.target.value;
+                  dataObj.driver = value;
                   this.setState({
                     dataObj
                   });
                 }}
+                options={driverOptions}
               />
             </div>
           </div>
@@ -177,7 +245,7 @@ class CreateNewTruck extends React.Component {
             <div>Truck type</div>
             <div>
               <Input
-                placeholder="Truck type"
+                placeholder="5 ton"
                 value={this.state.dataObj.truck_type}
                 onChange={e => {
                   const dataObj = this.state.dataObj;
@@ -193,7 +261,7 @@ class CreateNewTruck extends React.Component {
             <div>Price</div>
             <div>
               <Input
-                placeholder="Price"
+                placeholder="1000000000"
                 value={this.state.price}
                 onChange={e => {
                   const dataObj = this.state.dataObj;
@@ -209,7 +277,7 @@ class CreateNewTruck extends React.Component {
             <div>Dimenson (L-W-H)</div>
             <div>
               <Input
-                placeholder="Dimenson (L-W-H)"
+                placeholder="10-2-1.5"
                 value={this.state.dataObj.dimenson}
                 onChange={e => {
                   const dataObj = this.state.dataObj;
@@ -221,31 +289,37 @@ class CreateNewTruck extends React.Component {
               />
             </div>
           </div>
-          <div className="row">
+          <div className="row parkingAddress">
             <div>Parking address</div>
             <div>
-              <Input
-                placeholder="Parking address"
+              <TextField
+                multiline={true}
+                placeholder="No. 128, Hoàn Kiếm street, Hà Nội"
                 value={this.state.parking_address}
                 onChange={e => {
+                  if (e.target.value.length > 200) return;
                   const dataObj = this.state.dataObj;
                   dataObj.parking_address = e.target.value;
                   this.setState({
-                    dataObj
+                    dataObj,
+                    textCounterParkingAddress: e.target.value.length
                   });
                 }}
               />
+              <div className="textCounter">
+                {this.state.textCounterParkingAddress}/200
+              </div>
             </div>
           </div>
           <div className="row">
             <div>Production year</div>
             <div>
               <Input
-                placeholder="Production year"
-                value={this.state.dataObj.parking_address}
+                placeholder="2010"
+                value={this.state.dataObj.production_year}
                 onChange={e => {
                   const dataObj = this.state.dataObj;
-                  dataObj.parking_address = e.target.value;
+                  dataObj.production_year = e.target.value;
                   this.setState({
                     dataObj
                   });
@@ -256,33 +330,51 @@ class CreateNewTruck extends React.Component {
           <div className="row">
             <div>Status</div>
             <div>
-              <Input
-                placeholder="Status"
+              <Select
+                components={{
+                  DropdownIndicator: () => null,
+                  IndicatorSeparator: () => null
+                }}
+                styles={{
+                  control: () => ({
+                    // none of react-select's styles are passed to <Control />
+                    width: 310,
+                    height: 30
+                  })
+                }}
+                placeholder="in-use"
                 value={this.state.dataObj.status}
-                onChange={e => {
+                onChange={value => {
                   const dataObj = this.state.dataObj;
-                  dataObj.status = e.target.value;
+                  dataObj.status = value;
                   this.setState({
                     dataObj
                   });
                 }}
+                options={statusOptions}
               />
             </div>
           </div>
-          <div className="row">
+          <div className="row description">
             <div>Description</div>
             <div>
-              <Input
+              <TextField
+                multiline={true}
                 placeholder="Description"
                 value={this.state.dataObj.description}
                 onChange={e => {
+                  if (e.target.value.length > 200) return;
                   const dataObj = this.state.dataObj;
                   dataObj.description = e.target.value;
                   this.setState({
-                    dataObj
+                    dataObj,
+                    textCounterDescription: e.target.value.length
                   });
                 }}
               />
+              <div className="textCounter">
+                {this.state.textCounterDescription}/200
+              </div>
             </div>
           </div>
         </div>

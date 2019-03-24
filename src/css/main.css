@@ -99,3 +99,33 @@
 .app {
   padding: 8px;
 }
+
+.message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.message.error {
+  background: red;
+}
+.message.success {
+  background: yellow;
+}
+.MuiInput-root-1 {
+  width: 300px;
+}
+
+.textCounter {
+  text-align: right;
+  color: black;
+}
+
+.row.parkingAddress,
+.row.description {
+  max-height: 120px;
+  min-height: 24px;
+  height: auto;
+}
