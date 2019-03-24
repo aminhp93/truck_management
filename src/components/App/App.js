@@ -36,16 +36,12 @@ class App extends React.Component {
           editIcon.className = "editIcon";
           ReactDOM.render(<EditAttributes />, editIcon);
           editIcon.onclick = function() {
-            that.state.data.map((item, index) => {
-              if (item.truck_plate === params.data.truck_plate) {
-                that.state.data.splice(index, 1);
-                return;
+            showModal({
+              component: CreateNewTruck,
+              props: {
+                data: params.data,
+                callBack: that.handleCallBackEdit.bind(that)
               }
-            });
-            const newData = that.state.data.slice(0, NUMBERS_OF_ROW_DATA);
-            that.gridApi.setRowData(newData);
-            that.setState({
-              data: that.state.data
             });
           };
           const removeIcon = document.createElement("span");
@@ -147,8 +143,6 @@ class App extends React.Component {
     this.defaultColDef = {};
   }
 
-  handleRemove(params) {}
-
   onGridReady(params) {
     this.gridApi = params.api;
   }
@@ -157,13 +151,26 @@ class App extends React.Component {
     showModal({
       component: CreateNewTruck,
       props: {
-        callBack: this.handleCallBackSubmit.bind(this)
+        callBack: this.handleCallBackAdd.bind(this)
       }
     });
   }
 
-  handleCallBackSubmit(addedData) {
-    const data = DATA.data;
+  handleCallBackEdit(editedData) {
+    const data = this.state.data;
+    data.map((item, index) => {
+      if (item.cargo_plate === editedData.cargo_plate) {
+        data.splice(index, 1);
+        data.unshift(editedData);
+        return;
+      }
+    });
+    const newData = data.slice(0, NUMBERS_OF_ROW_DATA);
+    this.gridApi.setRowData(newData);
+  }
+
+  handleCallBackAdd(addedData) {
+    const data = this.state.data;
     data.unshift(addedData);
     const newData = data.slice(0, NUMBERS_OF_ROW_DATA);
     this.gridApi.setRowData(newData);

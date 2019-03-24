@@ -34,7 +34,7 @@ class CreateNewTruck extends React.Component {
     super(props);
     this.state = {
       errorMessage: "",
-      dataObj: {},
+      dataObj: this.props.data ? this.mapData(this.props.data) : {},
       textCounterDescription: 0,
       textCounterParkingAddress: 0,
       errorTruckPlate: false,
@@ -46,6 +46,33 @@ class CreateNewTruck extends React.Component {
       errorParkingAddress: false,
       errorDescription: false
     };
+  }
+
+  mapData(data) {
+    const obj = {};
+    obj.truck_plate = data.truck_plate;
+    obj.cargo_type = [];
+    data.cargo_type.split(",").map(item => {
+      let pushItem = {};
+      pushItem.value = item;
+      pushItem.label = item;
+      obj.cargo_type.push(pushItem);
+    });
+    obj.driver = {
+      value: data.driver,
+      label: data.driver
+    };
+    obj.truck_type = data.truck_type;
+    obj.price = data.price;
+    obj.dimenson = data.dimenson;
+    obj.parking_address = data.parking_address;
+    obj.production_year = data.production_year;
+    obj.description = data.description;
+    obj.status = {
+      label: obj.status,
+      value: obj.status
+    };
+    return obj;
   }
 
   hiddenError() {
@@ -175,15 +202,7 @@ class CreateNewTruck extends React.Component {
   handleSubmit() {
     if (!this.checkValidate()) return;
     const obj = {};
-    obj.description = this.state.dataObj.description;
-    obj.dimenson = this.state.dataObj.dimenson;
-    obj.driver = this.state.dataObj.driver.value;
-    obj.parking_address = this.state.dataObj.parking_address;
-    obj.price = this.state.dataObj.price;
-    obj.production_year = this.state.dataObj.production_year;
-    obj.status = this.state.dataObj.status.value;
     obj.truck_plate = this.state.dataObj.truck_plate;
-    obj.truck_type = this.state.dataObj.truck_type;
     obj.cargo_type = "";
     this.state.dataObj.cargo_type.map((item, index) => {
       if (index === this.state.dataObj.cargo_type.length - 1) {
@@ -192,10 +211,21 @@ class CreateNewTruck extends React.Component {
         obj.cargo_type += item.value + ", ";
       }
     });
+    obj.driver = this.state.dataObj.driver.value;
+    obj.truck_type = this.state.dataObj.truck_type;
+    obj.price = this.state.dataObj.price;
+    obj.dimenson = this.state.dataObj.dimenson;
+    obj.parking_address = this.state.dataObj.parking_address;
+    obj.production_year = this.state.dataObj.production_year;
+    obj.description = this.state.dataObj.description;
+    obj.status = this.state.dataObj.status.value;
+
     this.props.callBack(obj);
     this.setState(
       {
-        successMessage: "Your truck has been added successfully"
+        successMessage: this.props.data
+          ? "The truck has been updated successfully"
+          : "The truck has been added successfully"
       },
       () => {
         setTimeout(() => {
@@ -314,7 +344,7 @@ class CreateNewTruck extends React.Component {
               <Input
                 error={this.state.errorPrice ? true : false}
                 placeholder="1000000000"
-                value={this.state.price}
+                value={this.state.dataObj.price}
                 onChange={e => {
                   const dataObj = this.state.dataObj;
                   dataObj.price = e.target.value;
@@ -349,7 +379,7 @@ class CreateNewTruck extends React.Component {
                 error={this.state.errorParkingAddress ? true : false}
                 multiline={true}
                 placeholder="No. 128, Hoàn Kiếm street, Hà Nội"
-                value={this.state.parking_address}
+                value={this.state.dataObj.parking_address}
                 onChange={e => {
                   if (e.target.value.length > 200) return;
                   const dataObj = this.state.dataObj;

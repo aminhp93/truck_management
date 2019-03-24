@@ -9,7 +9,7 @@ export default {
       dimenson: "10-2-1.5",
       parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
       production_year: "2010",
-      status: "in-use",
+      status: "In-use",
       description: ""
     },
     {
@@ -21,7 +21,7 @@ export default {
       dimenson: "10-2-1.5",
       parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
       production_year: "2010",
-      status: "in-use",
+      status: "In-use",
       description: ""
     },
     {
@@ -33,7 +33,7 @@ export default {
       dimenson: "10-2-1.5",
       parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
       production_year: "2010",
-      status: "in-use",
+      status: "In-use",
       description: ""
     },
     {
@@ -45,7 +45,7 @@ export default {
       dimenson: "10-2-1.5",
       parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
       production_year: "2010",
-      status: "in-use",
+      status: "In-use",
       description: ""
     },
     {
@@ -57,7 +57,7 @@ export default {
       dimenson: "10-2-1.5",
       parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
       production_year: "2010",
-      status: "in-use",
+      status: "In-use",
       description: ""
     },
     {
@@ -69,7 +69,7 @@ export default {
       dimenson: "10-2-1.5",
       parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
       production_year: "2010",
-      status: "in-use",
+      status: "In-use",
       description: ""
     },
     {
@@ -81,7 +81,7 @@ export default {
       dimenson: "10-2-1.5",
       parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
       production_year: "2010",
-      status: "in-use",
+      status: "In-use",
       description: ""
     },
     {
@@ -93,7 +93,7 @@ export default {
       dimenson: "10-2-1.5",
       parking_address: "No. 128, Hoàn Kiếm street, Hà Nội",
       production_year: "2010",
-      status: "in-use",
+      status: "In-use",
       description: ""
     }
   ]
